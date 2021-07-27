@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prueba</title>
+</head>
+
+<body>
+    <form action="/files" method="post" enctype="multipart/form-data">
+        <input type="file" name="imagen" id="imagen">
+        <button type="button" onclick="subir_imagen_fetch()">submit</button>
+    </form>
+</body>
+<script>
+
+    function subir_imagen_fetch() {
+        //     let h = new Headers();
+        //     h.append('Accept', 'application/json'); //what we expect back
+        //     //bundle the files and data we want to send to the server
+        //     let fd = new FormData();
+        //     /* fd.append('user-id', document.getElementById('user_id').value); */
+
+        //     let myFile = document.getElementById('imagen').files[0];
+        //     fd.append('imagen', myFile, "imagen.png");
+        //     // $_FILES['avatar']['file_name']  "avatar.png"
+        //     let req = new Request('/files', {
+        //         method: 'POST',
+        //         headers: h,
+        //         mode: 'no-cors',
+        //         body: fd
+        //     });
+
+        //     fetch(req)
+        //         .then((response) => {
+        //             document.getElementById('output').textContent = "Response received from server";
+        //         })
+        //         .catch((err) => {
+        //             console.log('ERROR:', err.message);
+        //         });
+        // }
+        var imagen = document.getElementById('imagen').files[0];
+        const data = new FormData();
+        data.append('imagen', imagen);
+        var req = new Request("/files", {
+            method: "POST",
+            body: data,
+            mode: 'no-cors'
+        });
+        fetch(req).then(resp => resp.text())
+            .then(data => {
+
+            })
+    }
+
+</script>
+
+</html>
